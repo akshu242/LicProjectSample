@@ -6,18 +6,18 @@ import { from } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  cliaUrl = 'http://localhost:8080/liccliaproject/clia/';
-  agentsUrl = 'http://localhost:8080/liccliaproject/agents/';
-  customersUrl = 'http://localhost:8080/liccliaproject/policyHolders/';
-  policyDetailsUrl = 'http://localhost:8080/liccliaproject/policies';
-  healthDetailsUrl = 'http://localhost:8080/liccliaproject/healthDetails';
-  addressDetailsUrl = 'http://localhost:8080/liccliaproject/address';
+  cliaUrl = 'http://13.233.108.194:8080/liccliaproject/clia/';
+  agentsUrl = 'http://13.233.108.194:8080/liccliaproject/agents/';
+  customersUrl = 'http://13.233.108.194:8080/liccliaproject/policyHolders/';
+  policyDetailsUrl = 'http://13.233.108.194:8080/liccliaproject/policies';
+  healthDetailsUrl = 'http://13.233.108.194:8080/liccliaproject/healthDetails';
+  addressDetailsUrl = 'http://13.233.108.194:8080/liccliaproject/address';
   constructor(public http: HttpClient) { }
 
 // Data services for clia
 
   loginCLIA(data) {
-    return this.http.get('http://localhost:8080/liccliaproject/clia/login/' + data.cliaId + '/' + data.phNumber);
+    return this.http.get('http://13.233.108.194:8080/liccliaproject/clia/login/' + data.cliaId + '/' + data.phNumber);
   }
 
   getDataOfClia() {
@@ -25,7 +25,7 @@ export class DataService {
   }
 
    editCliaById(cliaId , clia) {
-     return this.http.put('http://localhost:8080/liccliaproject/clia/' + cliaId , clia);
+     return this.http.put('http://13.233.108.194:8080/liccliaproject/clia/' + cliaId , clia);
    }
 
 
@@ -39,24 +39,29 @@ export class DataService {
     return this.http.post(this.agentsUrl, agent);
   }
 
-  editAgentById(agentId , agent) {
+  editAgentById( agentId , agent) {
     console.log(agent);
 
-    return this.http.put('http://localhost:8080/liccliaproject/agents/editagent/' + agentId , agent);
+    return this.http.put('http://13.233.108.194:8080/liccliaproject/agents/editagent/' + agentId , agent);
   }
+  editCustomerById(custId , customer) {
+    console.log(customer);
+    return this.http.put('http://13.233.108.194:8080/liccliaproject/policyHolders/update/' + custId , customer );
+  }
+
 
   getAgentById(agentId) {
     return this.http.get(this.agentsUrl + agentId);
   }
 
   loginAgent(data) {
-    return this.http.get('http://localhost:8080/liccliaproject/agents/login/' + data.agentId + '/' + data.phNumber);
+    return this.http.get('http://13.233.108.194:8080/liccliaproject/agents/login/' + data.agentId + '/' + data.phNumber);
   }
 
 
 // data services for cust
   loginCustomer(data) {
-    return this.http.get('http://localhost:8080/liccliaproject/policyHolders/login/' + data.custId + '/' + data.phNumber);
+    return this.http.get('http://13.233.108.194:8080/liccliaproject/policyHolders/login/' + data.custId + '/' + data.phNumber);
   }
 
   getDataOfCustomers() {
@@ -67,15 +72,10 @@ export class DataService {
     return this.http.get(this.customersUrl + custId);
   }
 
-  editCustomerById(id , customer) {
-    console.log(customer);
-    console.log(id);
-    return this.http.put('http://localhost:8080/liccliaproject/policyHolders/update/' + id , customer );
-  }
 
   addCustomer(agentId , customer) {
     console.log(customer + agentId);
-    return this.http.put('http://localhost:8080/liccliaproject/policyHolders/addCustomer/' + agentId , customer);
+    return this.http.put('http://13.233.108.194:8080/liccliaproject/policyHolders/addCustomer/' + agentId , customer);
   }
 
 
@@ -86,18 +86,18 @@ getDataOfPolicies() {
 
 // data service for addressDetails
 addAddressDetails(custId , address) {
-  return this.http.put('http://localhost:8080/liccliaproject/address/' + custId , address );
+  return this.http.put('http://13.233.108.194:8080/liccliaproject/address/' + custId , address );
   }
 
 // data service for hDetails
   addHealthDetails(custId , health) {
-  return this.http.put('http://localhost:8080/liccliaproject/healthDetails/addHealth/' + custId , health );
+  return this.http.put('http://13.233.108.194:8080/liccliaproject/healthDetails/addHealth/' + custId , health );
   }
 
 
   // data service for policyDetails
   addPolicyDetails(custId , policy) {
-    return this.http.put('http://localhost:8080/liccliaproject/policies/addPolicy/' + custId , policy );
+    return this.http.put('http://13.233.108.194:8080/liccliaproject/policies/addPolicy/' + custId , policy );
     }
 
   isCLIA() {
